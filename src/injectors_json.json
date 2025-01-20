@@ -1,0 +1,51 @@
+[
+  {
+    "tag": "CPU_default",
+    "type": "CPU"
+  },
+  {
+    "tag": "CPU_Logical_Core0",
+    "type": "CPU",
+    "core_number": 0
+  },
+  {
+    "tag": "CPU_Logical_Core1",
+    "type": "CPU",
+    "core_number": 1
+  },
+  {
+    "tag": "CPU_Logical_Core2",
+    "type": "CPU",
+    "core_number": 2
+  },
+  {
+    "tag": "CPU_Logical_Core3",
+    "type": "CPU",
+    "core_number": 3
+  },
+  {
+    "tag": "CPU_Logical_Core4",
+    "type": "CPU",
+    "core_number": 4
+  },
+  {
+    "tag": "CPU_Logical_Core5",
+    "type": "CPU",
+    "core_number": 5
+  },
+  {
+    "tag": "CPU_Logical_Core6",
+    "type": "CPU",
+    "core_number": 6
+  },
+  {
+    "tag": "CPU_Logical_Core7",
+    "type": "CPU",
+    "core_number": 7
+  },
+  {
+    "tag": "Memory_default",
+    "type":  "Memory",
+    "items_for_loop": 12345678
+  }
+]
