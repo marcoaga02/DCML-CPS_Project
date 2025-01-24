@@ -31,11 +31,11 @@ if __name__ == "__main__":
         verbose = True
     sleep_time_after_obs = 0.1 # time to sleep before to make a new observation
 
-    # Checking of output_folder already exists: if yes, delete
+    # Checking if output_folder already exists: if yes, delete
     if not os.path.exists(out_folder):
         os.mkdir(out_folder)
 
-    # Checking of csv_filename already exists: if yes, delete
+    # Checking if csv_filename already exists: if yes, delete
     csv_filename = os.path.join(out_folder, csv_filename)
     if os.path.exists(csv_filename):
         os.remove(csv_filename)

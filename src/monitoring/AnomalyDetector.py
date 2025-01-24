@@ -8,8 +8,8 @@ from utils.SeverityLevel import SeverityLevel
 from utils.utilities import current_date_and_time, write_dict_to_csv
 from collections import OrderedDict
 
-TRESHOLD_TO_RESET_FLAG = 5
-OUT_FOLDER = "output_folder"
+TRESHOLD_TO_RESET_FLAG = 5 # after this number of consecutive times that the anomaly detector says NORMAL, the SeverityLevel is set to LEVEL_5 (the lowest one)
+OUT_FOLDER = "log"
 LOG_DATAPOINT_AND_PREDICTION_FILENAME = "datapoint_with_predictions.log"
 LOG_PREDICTIONS_AND_SEVERITY_LEVEL = "predictions_with_severity_level.log"
 
@@ -112,18 +112,18 @@ class AnomalyDetector():
         """
         Method to manage the raising of a message, that depends on the current severity anomaly's level
         """
-        alert_msg: str = "ANOMALY DETECTED" if ongoing_anomaly else "NORMAL STATE"
+        alert_msg: str = "NOTHING DETECTED -> System Status:" if not ongoing_anomaly else "ANOMALY DETECTED -> System Status:"
         match self.severity_level:
             case SeverityLevel.LEVEL_1:
-                alert_msg = f"{alert_msg} - Critical anomaly detected! Immediate action is mandatory to avoid system failure."
+                alert_msg = f"{alert_msg} CRITICAL - Immediate action required to prevent a system failure. Significant threat to functionality."
             case SeverityLevel.LEVEL_2:
-                alert_msg = f"{alert_msg} - High anomaly detected! Action is required to prevent potential issues."
+                alert_msg = f"{alert_msg} SEVERE - Urgent action required to prevent further issues and protect the system's integrity."
             case SeverityLevel.LEVEL_3:
-                alert_msg = f"{alert_msg} - Moderate anomaly detected. Investigate potential causes and take preemptive measures."
+                alert_msg = f"{alert_msg} CAUTION - Potential risk detected, investigation needed to address and prevent escalation."
             case SeverityLevel.LEVEL_4:
-                alert_msg = f"{alert_msg} - Low-level anomaly detected. Monitor the system closely for any changes."
+                alert_msg = f"{alert_msg} UNDER OBSERVATION - Minor anomaly, monitoring the system closely is recommended."
             case SeverityLevel.LEVEL_5:
-                alert_msg = f"{alert_msg} - System is operating normally. No action required."
+                alert_msg = f"{alert_msg} NORMAL - The system is fully operational. No action required."
         print(alert_msg)
 
     def update_severity_level(self, num_obs_anomalies: int):
@@ -171,15 +171,15 @@ class AnomalyDetector():
 
         match severity_level:
             case SeverityLevel.LEVEL_1:
-                sev_level_string = "LEVEL 1 - Critical anomaly detected"
+                sev_level_string = "LEVEL 1 - System Status -> CRITICAL"
             case SeverityLevel.LEVEL_2:
-                sev_level_string = "LEVEL 2 - High anomaly detected"
+                sev_level_string = "LEVEL 2 - System Status -> SEVERE"
             case SeverityLevel.LEVEL_3:
-                sev_level_string = "LEVEL 3 - Moderate anomaly detected"
+                sev_level_string = "LEVEL 3 - System Status -> CAUTION"
             case SeverityLevel.LEVEL_4:
-                sev_level_string = "LEVEL 4 - Low-level anomaly detected"
+                sev_level_string = "LEVEL 4 - System Status -> UNDER OBSERVATION"
             case SeverityLevel.LEVEL_5:
-                sev_level_string = "LEVEL 5 - System is operating normally"
+                sev_level_string = "LEVEL 5 - System Status -> NORMAL"
 
         dict_sl = OrderedDict([('date_and_time', date_and_time_of_monitoring), ('prediction', prediction), ('predicted_proba', predicted_proba), ('severity_level', sev_level_string)],)
         write_dict_to_csv(sl_log_fn, dict_sl, is_first_time)
