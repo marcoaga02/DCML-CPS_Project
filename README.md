@@ -50,7 +50,7 @@ DCML-CPS_Project/
 |      |        |--- SeverityLevel.py # enum to represents the severity level of an ongoing anomaly  
 |      |        |--- SystemState.py # enum to represents the state of the system  
 |      |        |--- utilities.py # contains utility functions  
-|      |
+|      |  
 |      |--- DCML_Colab_Project_Agatensi.ipynb # Notebook Google Colab for ML part  
 |      |--- debug_injectors.json # json used if debug is enabled during monitoring/injection  
 |      |--- injectors_json.json # json used if debug is disabled  
