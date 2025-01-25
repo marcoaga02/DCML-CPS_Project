@@ -1,47 +1,31 @@
 #!/bin/bash
 
-# function to stress the RAM
-stress_ram() {
-    echo "Stressing RAM: for 20 seconds..."
-    stress --vm 4 --vm-bytes 2G --timeout 20s
-
-}
-
-# function to stress the CPU
-stress_cpu() {
-    local cores=$1
-    echo "Stressing CPU: $cores cores for 20 seconds..."
-    stress-ng --cpu $cores --timeout 20s
-}
-
-# Function to stress both CPU and RAM at the same time
-stress_mixed() {
-    local cpu_cores=$1
-    echo "Stressing CPU ($cpu_cores cores) and RAM for 20 seconds..."
-    stress --cpu $cpu_cores --vm 4 --vm-bytes 2G --timeout 20s
-}
-
 echo "==============================="
 echo "Starting a new stress cycle..."
 echo "==============================="
 
-stress_ram
+
+echo "Stressing RAM with 2 threads for 20 seconds..."
+stress-ng --vm 2 --vm-bytes 90% --timeout 20s
 
 echo "Cooling down for 10 seconds..." # Cooling down step after each stress cycle
 sleep 10
 
-stress_cpu 1 # stress one core of the CPU
+echo "Stressing few CPU cores for 15 seconds..."
+stress-ng --cpu 2 --timeout 15s
 
 echo "Cooling down for 10 seconds..." # Cooling down step after each stress cycle
 sleep 10
 
+echo "Stressing few cores CPU for 15 seconds..."
 total_cores=$(nproc)
-stress_cpu $total_cores # stress all cores of the CPU
+stress-ng --cpu $total_cores --timeout 15s
 
 echo "Cooling down for 10 seconds..." # Cooling down step after each stress cycle
 sleep 10
 
-stress_mixed $((total_cores / 2)) 
+echo "Stressing both CPU and RAM for 15 seconds..."
+stress-ng --cpu $((total_cores / 2)) --vm 1 --vm-bytes 80% --timeout 15s
 
 echo "==========================="
 echo "End of the stress cycle..."

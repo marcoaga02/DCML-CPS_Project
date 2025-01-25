@@ -41,8 +41,7 @@ def get_int_number_from_string(str: str) -> int:
     :param str: string
     :return: the first integer number inside the input string, if any
     """
-    # Regular expression to find the first integer number inside the string
-    match = re.search(r'\d+', str)
+    match = re.search(r'\d+', str) # Regular expression to find the first integer number inside the string
     if match:
         return int(match.group())
     else:

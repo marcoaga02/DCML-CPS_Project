@@ -120,7 +120,7 @@ class CPUStressInjection(LoadInjector):
 
     def force_close(self):
         """
-        Method to call when you want to stop a CPU fault injection
+        Method to call when you want to stop a CPU stress injection
         """
         self.completed_flag = True
         self.stop_inj.set()
@@ -130,7 +130,7 @@ class CPUStressInjection(LoadInjector):
 
     def get_name(self) -> str:
         """
-        Method to get a string description of the injected fault
+        Method to get a string description of the injection
         """
         return "[" + self.tag + "]CPUStressInjection" + "(d" + str(self.duration_ms) + ")"
     
@@ -214,7 +214,7 @@ class MemoryStressInjection(LoadInjector):
 
     def force_close(self):
         """
-        Method to call when you want to stop a VM fault injection
+        Method to call when you want to stop a VM injection
         """
         self.completed_flag = True
         self.stop_inj.set()
@@ -224,7 +224,7 @@ class MemoryStressInjection(LoadInjector):
 
     def get_name(self) -> str:
         """
-        Method to get a string description of the injected fault
+        Method to get a string description of the injection
         """
         return "[" + self.tag + "]MemoryStressInjection(d" + str(self.duration_ms) + "-i" \
                + str(self.items_for_loop) + ")"

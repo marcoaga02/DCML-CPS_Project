@@ -5,7 +5,7 @@ from utils.SystemState import SystemState
 
 class SystemMonitor:
     """
-    Class to build a system monitor to monitor the usage of resources in the system
+    Class to build a system monitor to monitor the usage of resources in the system (and gather data)
     """
     def __init__(self, monitor_cpu: bool = True, monitor_vm: bool = True, interval_cpu_times_percent: int = 0.10, interval_cpu_cores_percent: int = 0.50):
         """
@@ -75,8 +75,8 @@ class SystemMonitor:
 
     def start_injection(self, injector: str) -> None:
         """
-        This method  is called when a fault injection is started and set the system state to under fault injection and save the type of fault injected into the system
-        :param injector: the type of the fault injected into the system
+        This method is called when an injection is started and set the system state to under injection and save the type of the performed injection into the system
+        :param injector: the type of the performed injection into the system
         :return:
         """
         self.system_state = SystemState.UNDER_INJECTION
@@ -84,7 +84,7 @@ class SystemMonitor:
 
     def end_injection(self) -> None:
         """
-        This method is called when a fault injection is finished to set the system state to normal
+        This method is called when an injection is finished to set the system state to normal
         """
         self.system_state = SystemState.NORMAL
         self.injector = "None"

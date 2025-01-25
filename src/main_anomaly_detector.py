@@ -6,6 +6,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import StackingClassifier
 
 if __name__ == "__main__":
+     """
+     Main method to start the anomaly detection
+     """
      stacking_classifier: StackingClassifier = joblib.load('saved_models/best_model_stacking.pkl')
      standard_scaler: StandardScaler = joblib.load('saved_models/scaler.pkl')
  

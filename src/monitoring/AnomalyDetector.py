@@ -8,7 +8,7 @@ from utils.SeverityLevel import SeverityLevel
 from utils.utilities import current_date_and_time, write_dict_to_csv
 from collections import OrderedDict
 
-TRESHOLD_TO_RESET_FLAG = 5 # after this number of consecutive times that the anomaly detector says NORMAL, the SeverityLevel is set to LEVEL_5 (the lowest one)
+TRESHOLD_TO_RESET_FLAG = 5 # after this number of consecutive times that the anomaly detector says NOTHING DETECTED, the SeverityLevel is set to LEVEL_5 (the lowest one)
 OUT_FOLDER = "log"
 LOG_DATAPOINT_AND_PREDICTION_FILENAME = "datapoint_with_predictions.log"
 LOG_PREDICTIONS_AND_SEVERITY_LEVEL = "predictions_with_severity_level.log"
@@ -19,9 +19,9 @@ class AnomalyDetector():
         """
         Constructor
         :param model_clf: StackingClassifier already trained to use as anomaly detector
-        :param scaler: StandardScaler, fitted on the training set used to train the model, to apply to monitored data before to give them in input to the model
+        :param scaler: StandardScaler, fitted on the training set used to train the model, to apply to monitored data before giving them in input to the model
         :param monitor: instance of the monitor
-        :param feature_to_avoid: list of features to do not give in input to the model
+        :param feature_to_avoid: list of features to don't give in input to the model
         """
         self.model_clf = model_clf
         self.scaler = scaler  
@@ -50,7 +50,7 @@ class AnomalyDetector():
         
         num_anomalies_detec: int = 0 # number of anomalies currently detected
         reset_flag: int = 0 # this is incremented each time a normal behavior is detected. If its value reaches a treshold (TRESHOLD_TO_RESET_FLAG), the num_anomalies_detec variable is set to zero.
-                            # This is the case when after a long anomaly is detected, the system is detected as normal enough times to be considered safe
+                            # This is the case when, after a long anomaly is detected, the system is said to be normal enough times to be considered safe
         is_first_time: bool = True
         while not self.force_stop.is_set():
             with self.lock:
@@ -150,10 +150,10 @@ class AnomalyDetector():
     def log_system_info(self, dict_item: dict, prediction, predicted_proba, is_first_time, dp_log_fn, sl_log_fn, severity_level) -> None:
         """
         Method to log in a CSV format info about the system and predictions made by the classifier into two log files dp_log_fn and sl_log_fn
-        :param dict_item: dictionary to log into the log file dp_log_fn
+        :param dict_item: dictionary to write into the log file dp_log_fn
         :param prediction: string representing the prediction made by the classifier
-        :param predicted_proba: string representing the prediction probability computed by the classifier
-        :param is_first_time: True means that is the first log to files
+        :param predicted_proba: prediction probability computed by the classifier
+        :param is_first_time: True means that is the first log into files and then the header has to be written
         :param dp_log_fn: name of the log file in which log info about date + time, prediction, predicted probability and datapoints on which the model make predictions
         :param sl_log_fn: name of the log file in which log info about date + time, prediction, predicted probability and the current severity level
         :param severity_level: the current severity level of the system

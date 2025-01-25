@@ -5,14 +5,14 @@ from .LoadInjector import LoadInjector
 
 class InjectionManager:
     """
-    Class to manage easily fault injections given a JSON file containing the description of each fault injection
+    Class to manage easily injections in the system given a JSON file containing the description of each injection
     """
 
     def __init__(self, json_object, inj_duration, obs_per_inj: int, inj_number: int = -1, verbose: bool = False):
         """
         Constructor
         :param json_object: the json object or file containing a json object
-        :param inj_duration: estimated duration of each fault injection in milliseconds
+        :param inj_duration: estimated duration of each injection in milliseconds
         :param obs_per_inj: number of observation per injection
         :param inj_number: number of injection to perform. If the injectors in the json are less, injectors are replicated randomly to reach this value. 
             In case of default value -1, the number of injections to perform are those in the json file
@@ -44,8 +44,8 @@ class InjectionManager:
         number_of_inj = len(json_object)
 
         if self.inj_number != -1 and self.inj_number < number_of_inj:
-            self.inj_number = -1 # default value
-            print("Wrong value inj_number. Set to default value -1") # a sort of defensive initialization to make this class more robust
+            self.inj_number = -1 # default value, a sort of "defensive" initialization to make this class more robust
+            print("Wrong value inj_number. Set to default value -1")
 
         json_injectors = []
         if json_object is not None:
@@ -80,10 +80,10 @@ class InjectionManager:
 
         self.injectors = json_injectors
     
-    def inject_fault(self) -> str:
+    def start_injection(self) -> str:
         """
-        Method to inject the next fault of the list of injectors (if there are no injections ongoing)
-        :return: the type of the injected fault
+        Method to perform the next injection in the list of injectors (if there are no injections ongoing)
+        :return: the type of the injection performed
         """
         if not self.injectors_list_is_empty() and self.current_inj is None:
             self.current_inj = self.injectors.pop(0)
@@ -97,7 +97,7 @@ class InjectionManager:
 
     def stop_injection(self) -> None:
         """
-        Method to stop the current fault injection
+        Method to stop the current injection
         """
         if self.current_inj is not None:
             self.if_verbose("Stop of the injection of injector '%s'" % self.current_inj.get_name())

@@ -5,11 +5,11 @@ from monitoring.InjectionManager import InjectionManager
 from utils.utilities import write_dict_to_csv
 from utils.SystemState import SystemState
 
-DEBUG: bool = True
+DEBUG: bool = False
 
 if __name__ == "__main__":
     """
-    Main method that starts a system monitoring by alternating normal behavior with abnormal behavior due to fault injection
+    Main method that starts a system monitoring by alternating normal behavior with abnormal behavior due to error injection
     """
 
     # General variables
@@ -26,8 +26,8 @@ if __name__ == "__main__":
         obs_per_inj = 10 # number of observation for each injection
         obs_norm_behav = 15 # number of observation to do after each injection
         inj_number = -1 # number of injection to perform
-        inj_json = 'src/injectors_json.json'
-        #inj_json = 'src/debug_injectors.json'
+        #inj_json = 'src/injectors_json.json'
+        inj_json = 'src/debug_injectors.json'
         verbose = True
     sleep_time_after_obs = 0.1 # time to sleep before to make a new observation
 
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         else:
             if monitor.get_system_state() == SystemState.NORMAL: # starts an injection
                 if not injection_manager.injectors_list_is_empty():
-                    monitor.start_injection(injection_manager.inject_fault())
+                    monitor.start_injection(injection_manager.start_injection())
                     num_obs_to_do = obs_per_inj
                 else:
                     break
@@ -75,4 +75,4 @@ if __name__ == "__main__":
                     break 
             num_obs_done = 0
     
-    print("Monitoring finished. All fault injections performed correctly!\nYou can find all monitored data in the output folder in the CSV file DCML_Project_dataset.csv")
+    print("Monitoring finished. All injections performed correctly!\nYou can find all monitored data in the output folder in the CSV file DCML_Project_dataset.csv")
