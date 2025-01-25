@@ -21,7 +21,9 @@ The execution lasts approximately 2.5 hours. If you wish to reduce this duration
 4. If you only want to run the anomaly detection system, use the following command instead:
 ``` bash
 python3 src/main_anomaly_detector.py  
-```
+```  
+
+In the ProjectReport.pdf file you can find useful information about how the project works and about its purpose.
 
 ## Folder Structure
 DCML-CPS_Project/
