@@ -29,39 +29,39 @@ In the ProjectReport.pdf file you can find useful information about how the proj
 ```plaintext
 DCML-CPS_Project/  
 |  
-|---log/ # contains log files generated during the execution of the file main_anomaly_detector.py  
-|      |--- datapoint_with_predictions.log  
-|      |--- predictions_with_severity_level.log  
+├── log/ # contains log files generated during the execution of the file main_anomaly_detector.py  
+|   ├── datapoint_with_predictions.log  
+|   ├── predictions_with_severity_level.log  
 |  
-|---output_folder/ # contains the CSV generated during the execution of the file main.py  
-|	|--- DCML_Project_dataset.csv # file CSV of the dataset  
+├── output_folder/ # contains the CSV generated during the execution of the file main.py  
+|   ├── DCML_Project_dataset.csv # file CSV of the dataset  
 |  
-|---saved_models/  
-|	|--- best_model_stacking.pkl # file of the model with best Accuracy and MCC (Stacking Classifier)  
-|	|--- scaler.pkl # file of the standard scaler to use at run time (fitted on the training set of the model)  
+├── saved_models/  
+|   ├── best_model_stacking.pkl # file of the model with best Accuracy and MCC (Stacking Classifier)  
+|   ├── scaler.pkl # file of the standard scaler to use at run time (fitted on the training set of the model)  
 |  
-|---src/  
-|      |---monitoring/  
-|      |          |--- AnomalyDetector.py # class of the anomaly detector  
-|      |          |--- InjectionManager.py # class to handle injection in the system  
-|      |          |--- LoadInjector.py # class to load/start/stop injection  
-|      |          |--- SystemMonitor.py # class to monitor the usage of system’s resources  
-|      |  
-|      |---utils/  
-|      |        |--- SeverityLevel.py # enum to represents the severity level of an ongoing anomaly  
-|      |        |--- SystemState.py # enum to represents the state of the system  
-|      |        |--- utilities.py # contains utility functions  
-|      |  
-|      |--- DCML_Colab_Project_Agatensi.ipynb # Notebook Google Colab for ML part  
-|      |--- debug_injectors.json # json used if debug is enabled during monitoring/injection  
-|      |--- injectors_json.json # json used if debug is disabled  
-|      |--- main_anomaly_detector.py # main to be executed to run the Anomaly Detector  
-|      |--- main.py # main to be executed to run the monitoring/injection to build the dataset  
+├── src/  
+|   ├── monitoring/  
+|   |   ├── AnomalyDetector.py # class of the anomaly detector  
+|   |   ├── InjectionManager.py # class to handle injection in the system  
+|   |   ├── LoadInjector.py # class to load/start/stop injection  
+|   |   ├── SystemMonitor.py # class to monitor the usage of system’s resources  
+|   |  
+|   ├── utils/  
+|   |   ├── SeverityLevel.py # enum to represents the severity level of an ongoing anomaly  
+|   |   ├── SystemState.py # enum to represents the state of the system  
+|   |   ├── utilities.py # contains utility functions  
+|   |  
+|   ├── DCML_Colab_Project_Agatensi.ipynb # Notebook Google Colab for ML part  
+|   ├── debug_injectors.json # json used if debug is enabled during monitoring/injection  
+|   ├── injectors_json.json # json used if debug is disabled  
+|   ├── main_anomaly_detector.py # main to be executed to run the Anomaly Detector  
+|   ├── main.py # main to be executed to run the monitoring/injection to build the dataset  
 |  
-|--- test_Anomaly_Detector/  
-|	|--- stress_cycles.sh # shell’s script to stress the system to test the final Anomaly Detector  
+├── test_Anomaly_Detector/  
+|   ├── stress_cycles.sh # shell’s script to stress the system to test the final Anomaly Detector  
 |  
-|--- ProjectReport.pdf # Report of the project  
-|--- README.md # contains instructions to run the code  
-|--- requirements.txt # python requirements to run all main*.py files  
+├── ProjectReport.pdf # Report of the project  
+├── README.md # contains instructions to run the code  
+├── requirements.txt # python requirements to run all main*.py files  
 ```
