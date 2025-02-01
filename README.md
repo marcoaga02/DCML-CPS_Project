@@ -26,6 +26,7 @@ python3 src/main_anomaly_detector.py
 In the ProjectReport.pdf file you can find useful information about how the project works and about its purpose.
 
 ## Folder Structure
+```plaintext
 DCML-CPS_Project/  
 |  
 |---log/ # contains log files generated during the execution of the file main_anomaly_detector.py  
@@ -61,6 +62,6 @@ DCML-CPS_Project/
 |	|--- stress_cycles.sh # shell’s script to stress the system to test the final Anomaly Detector  
 |  
 |--- ProjectReport.pdf # Report of the project  
-|--- README.txt # contains instructions to run the code  
+|--- README.md # contains instructions to run the code  
 |--- requirements.txt # python requirements to run all main*.py files  
-
+```
