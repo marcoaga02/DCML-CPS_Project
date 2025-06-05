@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ``` bash
 python3 src/main.py  
 ```
-The execution lasts approximately 2.5 hours. If you wish to reduce this duration, you can modify the parameters in the file `main.py` to collect fewer data points.  
+  The execution lasts approximately 2.5 hours. If you wish to reduce this duration, you can modify the parameters in the file `main.py` to collect fewer data points.  
 4. If you only want to run the anomaly detection system, use the following command instead:
 ``` bash
 python3 src/main_anomaly_detector.py  
